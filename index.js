@@ -1,7 +1,7 @@
 // imports
 const express = require("express");
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 const albumsRouter = require("./routes/albums.routes");
 const artistsRouter = require("./routes/artists.routes");
 const songsRouter = require("./routes/songs.routes");
@@ -15,6 +15,8 @@ mongoose.connect(uri, {
 });
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

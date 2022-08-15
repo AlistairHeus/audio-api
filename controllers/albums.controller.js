@@ -27,7 +27,7 @@ function getAlbums(req, res) {
     } else {
       res.json(data);
     }
-  });
+  }).populate("songs");
 }
 
 function getAlbum(req, res) {

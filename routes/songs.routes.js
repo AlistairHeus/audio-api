@@ -1,23 +1,18 @@
 const fs = require("fs");
 const path = require("path");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now());
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const express = require("express");
 
-const { getSongs, getSong } = require("../controllers/songs.controller");
+const {
+  getSongs,
+  getSong,
+  postSong,
+} = require("../controllers/songs.controller");
 const Song = require("../models/song.models");
 
 const songsRouter = express.Router();
+
+songsRouter.post("/", postSong);
 
 // songsRouter.post(
 //   "/",
