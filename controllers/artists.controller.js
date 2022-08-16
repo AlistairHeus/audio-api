@@ -9,6 +9,8 @@ function postArtist(req, res) {
   const newArtist = new Artist({
     name: req.body.name,
     description: req.body.description,
+    album: req.body.album,
+    file: req.body.file,
   });
 
   newArtist.save(function (err, data) {
