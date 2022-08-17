@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const artistSchema = new Schema({
   name: String,
   description: String,
-  albums: Array,
   artistImage: String,
+  albums: [{ type: Schema.Types.ObjectId, ref: "Album" }],
 });
 
 const Artist = mongoose.model("Artist", artistSchema);

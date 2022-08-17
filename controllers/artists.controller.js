@@ -9,8 +9,7 @@ function postArtist(req, res) {
   const newArtist = new Artist({
     name: req.body.name,
     description: req.body.description,
-    album: req.body.album,
-    file: req.body.file,
+    albums: req.body.albums,
   });
 
   newArtist.save(function (err, data) {
@@ -29,7 +28,7 @@ function getArtists(req, res) {
     } else {
       res.json(data);
     }
-  });
+  }).populate("albums");
 }
 
 function getArtist(req, res) {

@@ -33,7 +33,7 @@ function getAlbums(req, res) {
 function getAlbum(req, res) {
   Album.findOne(
     {
-      name: req.params.AlbumName,
+      id: req.params._id,
     },
     function (err, data) {
       if (err) {
@@ -42,7 +42,9 @@ function getAlbum(req, res) {
         res.json(data);
       }
     }
-  );
+  )
+    .populate("artist")
+    .populate("songs");
 }
 
 module.exports = {
