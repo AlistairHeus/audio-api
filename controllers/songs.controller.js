@@ -44,7 +44,7 @@ function getSong(req, res) {
         res.json(data);
       }
     }
-  );
+  ).populate("album");
 }
 
 module.exports = {

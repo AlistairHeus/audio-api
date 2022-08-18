@@ -43,7 +43,7 @@ function getArtist(req, res) {
         res.json(data);
       }
     }
-  );
+  ).populate("albums");
 }
 
 module.exports = {

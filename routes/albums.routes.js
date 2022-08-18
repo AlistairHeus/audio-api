@@ -12,6 +12,6 @@ albumsRouter.post("/", postAlbum);
 
 albumsRouter.get("/", getAlbums);
 
-albumsRouter.get("/:albumName", getAlbum);
+albumsRouter.get("/:albumId", getAlbum);
 
 module.exports = albumsRouter;

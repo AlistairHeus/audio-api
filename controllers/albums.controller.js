@@ -33,7 +33,7 @@ function getAlbums(req, res) {
 function getAlbum(req, res) {
   Album.findOne(
     {
-      id: req.params._id,
+      _id: req.params.albumId,
     },
     function (err, data) {
       if (err) {
@@ -44,7 +44,13 @@ function getAlbum(req, res) {
     }
   )
     .populate("artist")
-    .populate("songs");
+    .populate({
+      path: "songs",
+      populate: {
+        path: "album",
+        model: "Album",
+      },
+    });
 }
 
 module.exports = {
