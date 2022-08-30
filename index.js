@@ -2,17 +2,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 const albumsRouter = require("./routes/albums.routes");
 const artistsRouter = require("./routes/artists.routes");
 const songsRouter = require("./routes/songs.routes");
 
-const uri =
-  "mongodb+srv://alistairheus:manibasu@cluster0.0b7wi.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("connected db"))
+  .catch((err) => console.log(err));
 
 const app = express();
 
@@ -29,14 +32,14 @@ app.use("/albums", albumsRouter);
 app.use("/songs", songsRouter);
 
 // routes
-const PORT = 8000;
+const PORT = process.env.PORT;
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log(`Database is now connected`);
-});
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//   console.log(`Database is now connected`);
+// });
 
 app.listen(PORT || 5000, () => {
   console.log(`Server is now listening on port ${PORT}`);
